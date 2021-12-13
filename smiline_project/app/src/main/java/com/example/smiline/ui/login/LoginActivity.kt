@@ -31,15 +31,29 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener {
         val passwordEditText=findViewById<EditText>(R.id.password)
         val userid=useridEditText.text.toString()
         val password=passwordEditText.text.toString()
+        var token:String?=null
         GlobalScope.launch {
-            val token=loginViewModel.auth(userid,password).await()
-            if(token!=""){
-                if (token != null) {
-                    firebaseAuth.signInWithCustomToken(token)
+            token=loginViewModel.auth(userid,password).await()
+            if(token!=null&&token!="") {
+                firebaseAuth.signInWithCustomToken(token!!)
+                firebaseAuth.currentUser?.let {
+                    startActivity(intent)
                 }
-                startActivity(intent)
             }
         }
-        //startActivity(intent)
+        /*
+        token?.let {
+            firebaseAuth.signInWithCustomToken(it)
+                .addOnCompleteListener(this) { task->
+                    if (task.isSuccessful) {
+                        // Sign in success, update UI with the signed-in user's information
+                        startActivity(intent)
+                    } else {
+                        println("feiled")
+                        // If sign in fails, display a message to the user.
+                    }
+                }
+        }
+         */
     }
 }
