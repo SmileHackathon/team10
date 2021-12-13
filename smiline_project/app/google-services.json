@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "854929530402",
+    "project_id": "smiline-8c235",
+    "storage_bucket": "smiline-8c235.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:854929530402:android:4dd3b7b67433aaeb94747b",
+        "android_client_info": {
+          "package_name": "com.example.smiline"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "854929530402-r2se2d8gqlgv31puek0ndkg2te8he4ju.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAi6TJnkLPKoiHaLps2Ht2pEkbB_deDhlM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "854929530402-r2se2d8gqlgv31puek0ndkg2te8he4ju.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
