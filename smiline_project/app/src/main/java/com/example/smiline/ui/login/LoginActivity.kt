@@ -7,8 +7,10 @@ import android.view.View
 import android.widget.Button
 import android.widget.EditText
 import androidx.lifecycle.ViewModelProvider
+import androidx.room.Room
 import com.example.smiline.MainActivity
 import com.example.smiline.R
+import com.example.smiline.model.db.AppDatabase
 import com.example.smiline.ui.home.HomeViewModel
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
@@ -37,23 +39,22 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener {
             if(token!=null&&token!="") {
                 firebaseAuth.signInWithCustomToken(token!!)
                 firebaseAuth.currentUser?.let {
-                    startActivity(intent)
+                    //startActivity(intent)
                 }
             }
         }
-        /*
-        token?.let {
-            firebaseAuth.signInWithCustomToken(it)
-                .addOnCompleteListener(this) { task->
-                    if (task.isSuccessful) {
-                        // Sign in success, update UI with the signed-in user's information
-                        startActivity(intent)
-                    } else {
-                        println("feiled")
-                        // If sign in fails, display a message to the user.
-                    }
+        GlobalScope.launch {
+            val db= Room
+                .databaseBuilder(
+                    applicationContext,
+                    AppDatabase::class.java, "database-name"
+                ).build()
+            val courses=loginViewModel.coursesRegister(userid,password).await()
+            if (courses != null) {
+                courses.forEach { course->
+                    db.userDao().insert(course)
                 }
+            }
         }
-         */
     }
 }
