@@ -5,20 +5,41 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import android.widget.Button
+import android.widget.EditText
+import androidx.lifecycle.ViewModelProvider
 import com.example.smiline.MainActivity
 import com.example.smiline.R
+import com.example.smiline.ui.home.HomeViewModel
+import com.google.firebase.auth.ktx.auth
+import com.google.firebase.ktx.Firebase
+import kotlinx.coroutines.*
 
 class LoginActivity : AppCompatActivity(), View.OnClickListener {
+    val firebaseAuth= Firebase.auth
+    private val job = SupervisorJob()
+    private lateinit var loginViewModel: LoginViewModel
     override fun onCreate(savedInstanceState: Bundle?) {
+        loginViewModel = ViewModelProvider(this).get(LoginViewModel::class.java)
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
-        val useridEditText=findViewById<android.widget.EditText>(R.id.userid)
-        val passwordEditText=findViewById<android.widget.EditText>(R.id.password)
         findViewById<Button>(R.id.login_button).setOnClickListener(this)
     }
 
     override fun onClick(view: View) {
         val intent=Intent(applicationContext, MainActivity::class.java)
-        startActivity(intent)
+        val useridEditText=findViewById<EditText>(R.id.userid)
+        val passwordEditText=findViewById<EditText>(R.id.password)
+        val userid=useridEditText.text.toString()
+        val password=passwordEditText.text.toString()
+        GlobalScope.launch {
+            val token=loginViewModel.auth(userid,password).await()
+            if(token!=""){
+                if (token != null) {
+                    firebaseAuth.signInWithCustomToken(token)
+                }
+                startActivity(intent)
+            }
+        }
+        //startActivity(intent)
     }
 }
