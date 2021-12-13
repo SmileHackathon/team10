@@ -19,6 +19,7 @@
 - 山内大翔：Android
 - 中村允洸：Android
 - 舘山龍之介：Android
+- 佐久間駿：Android
 
 ## 目標
 - チーム目標
