@@ -15,13 +15,16 @@
 ## 開発技術
 - kotlin
 - 利用したフレームワーク・ライブラリ
+  Flask
 - その他開発に使用したツール
+  Git,Git flow,Git hub,Android Studio,Firebase,Azure
 
 ## 役割分担
-- 山内大翔：Android
+- 山内大翔：Android,Python
 - 中村允洸：Android
 - 舘山龍之介：Android
 - 根本太貴：Android
+- 大須賀雅也:Android
 
 ## 目標
 - チーム目標
@@ -47,5 +50,9 @@ Kotlinでアプリを作れるようになる！
 - 根本太貴
   - 目標：  Firebase,Kotlinに慣れる。
   - 達成度： 80%  
+  - 根拠：
+- 大須賀雅也
+  - 目標： アプリの作り方を理解する
+  - 達成度：
   - 根拠：  
 
