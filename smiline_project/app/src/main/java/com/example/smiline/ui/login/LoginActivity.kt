@@ -51,6 +51,7 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener {
                 ).build()
             val courses=loginViewModel.coursesRegister(userid,password).await()
             if (courses != null) {
+                db.userDao().deleteAll()
                 courses.forEach { course->
                     db.userDao().insert(course)
                 }
