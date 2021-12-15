@@ -45,7 +45,6 @@
         android:backgroundTint="@color/white"
         android:ems="10"
         android:hint="@string/prompt_password"
-        android:inputType="textPassword"
         android:shadowColor="#A82727"
         app:layout_constraintBottom_toTopOf="@+id/login_button"
         app:layout_constraintEnd_toEndOf="parent"
