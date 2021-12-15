@@ -5,10 +5,17 @@
       <map>
         <entry key="..\:/Users/Owner/Desktop/team10/smiline_project/app/src/main/res/drawable/part_design.xml" value="0.16302083333333334" />
         <entry key="..\:/Users/Owner/Desktop/team10/smiline_project/app/src/main/res/layout/aa.xml" value="0.1" />
-        <entry key="..\:/Users/Owner/Desktop/team10/smiline_project/app/src/main/res/layout/activity_chat.xml" value="0.165" />
+        <entry key="..\:/Users/Owner/Desktop/team10/smiline_project/app/src/main/res/layout/activity_chat.xml" value="0.25" />
         <entry key="..\:/Users/Owner/Desktop/team10/smiline_project/app/src/main/res/layout/activity_login.xml" value="0.335" />
+        <entry key="app/src/main/res/layout/activity_chat.xml" value="0.17395833333333333" />
         <entry key="app/src/main/res/layout/activity_login.xml" value="0.1" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.264" />
+        <entry key="app/src/main/res/layout/course_item.xml" value="0.25384615384615383" />
+        <entry key="app/src/main/res/layout/fragment_dashboard.xml" value="0.11141304347826086" />
+        <entry key="app/src/main/res/layout/fragment_home.xml" value="0.11141304347826086" />
+        <entry key="app/src/main/res/layout/fragment_notifications.xml" value="0.11141304347826086" />
+        <entry key="app/src/main/res/layout/fragment_setting.xml" value="0.17395833333333333" />
+        <entry key="app/src/main/res/menu/bottom_nav_menu.xml" value="0.17239583333333333" />
       </map>
     </option>
   </component>
