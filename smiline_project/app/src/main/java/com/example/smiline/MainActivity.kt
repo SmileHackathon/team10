@@ -17,11 +17,14 @@ import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
+import com.google.firebase.auth.ktx.userProfileChangeRequest
 
 class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
     private var courses : List<Course> = listOf()
+
+    private val firebaseAuth= Firebase.auth
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -36,10 +39,17 @@ class MainActivity : AppCompatActivity() {
             println(courses)
         }
         super.onCreate(savedInstanceState)
+        /*
+        firebaseAuth.currentUser.let {
+            println(it!!.displayName)
+            val user=userProfileChangeRequest {
+                displayName = "hoge"
+            }
+        }*/
+
 
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        val auth=Firebase.auth
 
         val navView: BottomNavigationView = binding.navView
 
@@ -47,7 +57,7 @@ class MainActivity : AppCompatActivity() {
         // Passing each menu ID as a set of Ids because each
         // menu should be considered as top level destinations.
         val appBarConfiguration = AppBarConfiguration(setOf(
-                R.id.navigation_home, R.id.navigation_dashboard, R.id.navigation_notifications))
+                R.id.navigation_home, R.id.navigation_setting))
         setupActionBarWithNavController(navController, appBarConfiguration)
         navView.setupWithNavController(navController)
     }
