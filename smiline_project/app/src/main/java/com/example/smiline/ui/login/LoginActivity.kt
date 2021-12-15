@@ -12,6 +12,7 @@ import com.example.smiline.MainActivity
 import com.example.smiline.R
 import com.example.smiline.model.db.AppDatabase
 import com.example.smiline.ui.home.HomeViewModel
+import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
 import kotlinx.coroutines.*
