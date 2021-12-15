@@ -13,6 +13,9 @@ interface MyService{
     @POST("smiline_auth")
     fun postRawRequestForPosts(@Body body:RequestBody):Call<ResponseBody>
 
+    @POST("courses")
+    fun fetchCourses(@Body body:RequestBody):Call<ResponseBody>
+
     @PUT("posts/{id}")
     fun putRawRequestForPosts(@Path("id") id:String, @Body body:RequestBody):Call<ResponseBody>
 
