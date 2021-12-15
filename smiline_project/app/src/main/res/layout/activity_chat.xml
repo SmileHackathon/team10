@@ -7,11 +7,13 @@
     android:background="#609C27B0"
     tools:context=".ui.chat.ChatActivity" >
 
-    <TextView
-        android:id="@+id/getting_text"
-        android:layout_width="244dp"
-        android:layout_height="29dp"
-        android:background="@color/white"
-        tools:layout_editor_absoluteX="92dp"
-        tools:layout_editor_absoluteY="625dp" />
+    <EditText
+        android:id="@+id/editTextTextMultiLine"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:gravity="start|top"
+        android:inputType="textMultiLine"
+        tools:layout_editor_absoluteX="100dp"
+        tools:layout_editor_absoluteY="578dp" />
 </androidx.constraintlayout.widget.ConstraintLayout>
