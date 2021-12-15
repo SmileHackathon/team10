@@ -22,11 +22,22 @@ import com.google.firebase.auth.ktx.userProfileChangeRequest
 class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
+    private var courses : List<Course> = listOf()
 
     private val firebaseAuth= Firebase.auth
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        GlobalScope.launch {
+            val db: AppDatabase = Room
+                .databaseBuilder(
+                    applicationContext,
+                    AppDatabase::class.java, "database-name"
+                ).fallbackToDestructiveMigration()
+                .build()
+            courses = db.userDao().getAll()
+            println(courses)
+        }
         super.onCreate(savedInstanceState)
         /*
         firebaseAuth.currentUser.let {
