@@ -55,9 +55,10 @@ class ChatActivity : AppCompatActivity() {
 
             if(imageUri!=null){
                 //画像をアップロード
-                storageRef.child("images/${massageId.toString()}.png")
+                storageRef.child("images/${massageId.toString()}/image.png")
                 findViewById<ImageView>(R.id.messageImage).setImageDrawable(null)
                 val uploadTask = storageRef.putFile(imageUri!!)
+                println(imageUri!!.toString())
                 val urlTask = uploadTask.continueWithTask { task ->
                     if (!task.isSuccessful) {
                         task.exception?.let {
@@ -95,7 +96,8 @@ class ChatActivity : AppCompatActivity() {
             READ_REQUEST_CODE -> {
                 try {
                     data?.data?.also { uri ->
-                        imageUri = uri
+                        println(uri)
+                        imageUri=uri
                         val inputStream = contentResolver?.openInputStream(uri)
                         val image = BitmapFactory.decodeStream(inputStream)
                         val imageView = findViewById<ImageView>(R.id.messageImage)
@@ -127,8 +129,8 @@ class ChatActivity : AppCompatActivity() {
         if(userName==null || userName.isEmpty()){
             userName="名無し"
         }
-        firestore.collection(courseId.toString()).document(id)
-            .set(messageData)
+        firestore.collection(courseId.toString())
+            .add(messageData)
             .addOnSuccessListener { documentReference ->
                 Toast.makeText(this, "メッセージを送信しました", Toast.LENGTH_SHORT).show()
                 editText.text.clear()
