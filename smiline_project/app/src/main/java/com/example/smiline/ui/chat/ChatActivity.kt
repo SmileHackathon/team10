@@ -55,7 +55,7 @@ class ChatActivity : AppCompatActivity() {
 
             if(imageUri!=null){
                 //画像をアップロード
-                storageRef.child("images/${massageId.toString()}/image.png")
+                storageRef.child("image.png")
                 findViewById<ImageView>(R.id.messageImage).setImageDrawable(null)
                 val uploadTask = storageRef.putFile(imageUri!!)
                 println(imageUri!!.toString())
@@ -119,16 +119,17 @@ class ChatActivity : AppCompatActivity() {
     fun sendMessage(courseId:Int,uri:Uri?,firestore: FirebaseFirestore,id:String){
         val editText=findViewById<EditText>(R.id.messageEditText)
         val messageText=editText.text.toString()
-        val firebaseAuth= Firebase.auth
-        var userName=firebaseAuth.currentUser?.displayName
+        //val firebaseAuth= Firebase.auth
+        //var userName=firebaseAuth.currentUser?.displayName
+        /*
+        if(userName==null || userName.isEmpty()){
+            userName="名無し"
+        }*/
         val messageData = hashMapOf(
-            "name" to userName,
+            "name" to "korean",
             "content" to messageText,
             "uri" to uri,
             "id" to id)
-        if(userName==null || userName.isEmpty()){
-            userName="名無し"
-        }
         firestore.collection(courseId.toString())
             .add(messageData)
             .addOnSuccessListener { documentReference ->
