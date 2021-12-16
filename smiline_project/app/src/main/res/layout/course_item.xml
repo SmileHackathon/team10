@@ -30,7 +30,7 @@
                     android:id="@+id/name"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="aaa"
+                    android:text="@string/aaa"
                     android:textSize="14sp" />
 
             </LinearLayout>

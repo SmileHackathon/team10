@@ -1,6 +1,8 @@
 package com.example.smiline.ui.home
 
+import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -12,6 +14,7 @@ import com.example.smiline.R
 import com.example.smiline.databinding.FragmentHomeBinding
 import com.example.smiline.model.db.AppDatabase
 import com.example.smiline.model.db.Course
+import com.example.smiline.ui.chat.ChatActivity
 import com.example.smiline.util.ui.listAdapter.ListAdapter
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
@@ -53,7 +56,14 @@ class HomeFragment : Fragment() {
                         list_view.adapter = adapter
                     }
                 }
+                list_view.setOnItemClickListener { _, _, position, _ ->
+                    val intent = Intent(requireContext(), ChatActivity::class.java)
+                    intent.putExtra("id",courses?.get(position)?.course_id)
+                    intent.putExtra("name",courses?.get(position)?.course_name)
+                    startActivity(intent)
+                }
             }
+
         }
 
         return root
