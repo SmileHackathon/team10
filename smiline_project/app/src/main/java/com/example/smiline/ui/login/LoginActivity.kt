@@ -7,15 +7,18 @@ import android.view.View
 import android.widget.Button
 import android.widget.EditText
 import androidx.lifecycle.ViewModelProvider
+import androidx.room.Room
 import com.example.smiline.MainActivity
 import com.example.smiline.R
+import com.example.smiline.model.db.AppDatabase
 import com.example.smiline.ui.home.HomeViewModel
+import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
 import kotlinx.coroutines.*
 
 class LoginActivity : AppCompatActivity(), View.OnClickListener {
-    val firebaseAuth= Firebase.auth
+    private val firebaseAuth= Firebase.auth
     private val job = SupervisorJob()
     private lateinit var loginViewModel: LoginViewModel
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -33,6 +36,30 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener {
         val password=passwordEditText.text.toString()
         var token:String?=null
         GlobalScope.launch {
+            val db: AppDatabase = Room
+                .databaseBuilder(
+                    applicationContext,
+                    AppDatabase::class.java, "database-name"
+                ).fallbackToDestructiveMigration()
+                .build()
+            val courses=loginViewModel.coursesRegister(userid,password).await()
+            if (courses != null) {
+                val dbCourses=db.userDao().getAll()
+                courses.forEach { course->
+                    //println(course)
+                    if(!dbCourses.contains(course)){
+                        db.userDao().insert(course)
+                    }
+                }
+                dbCourses.forEach { dbCourse->
+                    //println(course)
+                    if(!courses.contains(dbCourse)){
+                        db.userDao().delete(dbCourse)
+                    }
+                }
+            }
+        }
+        GlobalScope.launch {
             token=loginViewModel.auth(userid,password).await()
             if(token!=null&&token!="") {
                 firebaseAuth.signInWithCustomToken(token!!)
@@ -41,19 +68,5 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener {
                 }
             }
         }
-        /*
-        token?.let {
-            firebaseAuth.signInWithCustomToken(it)
-                .addOnCompleteListener(this) { task->
-                    if (task.isSuccessful) {
-                        // Sign in success, update UI with the signed-in user's information
-                        startActivity(intent)
-                    } else {
-                        println("feiled")
-                        // If sign in fails, display a message to the user.
-                    }
-                }
-        }
-         */
     }
 }
