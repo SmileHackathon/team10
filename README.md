@@ -21,7 +21,7 @@
   Git,Git flow,Git hub,Android Studio,Firebase,Azure
 
 ## 役割分担
-- 山内大翔：Android,Python
+- 山内大翔：Android,Python,Firebase
 - 中村允洸：Android
 - 舘山龍之介：Android
 - 根本太貴：Android
