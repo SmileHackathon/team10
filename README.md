@@ -24,13 +24,9 @@
 - 山内大翔：Android,Python
 - 中村允洸：Android
 - 舘山龍之介：Android
-<<<<<<< HEAD
-- 佐久間駿：Android
-=======
 - 根本太貴：Android
 - 大須賀雅也:Android
 - 佐久間駿:Android
->>>>>>> feature/editReadmesakuma
 
 ## 目標
 - チーム目標
