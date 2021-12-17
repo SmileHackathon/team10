@@ -1,18 +1,12 @@
 package com.example.smiline.ui.chat
 
-import android.content.ContentValues.TAG
 import android.content.Intent
-import android.graphics.Bitmap
 import android.graphics.BitmapFactory
-import android.graphics.drawable.BitmapDrawable
 import android.net.Uri
 import android.os.Bundle
-import android.util.Log
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
-import androidx.room.Room
 import com.example.smiline.R
-import com.example.smiline.model.db.AppDatabase
 import com.example.smiline.util.data.Chat
 import com.example.smiline.util.ui.listAdapter.ChatAdapter
 import com.google.firebase.Timestamp
@@ -20,10 +14,7 @@ import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
-import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.ktx.storage
-import kotlinx.coroutines.GlobalScope
-import java.io.ByteArrayOutputStream
 import java.util.*
 
 
@@ -45,7 +36,7 @@ class ChatActivity : AppCompatActivity() {
                 var chatList=ArrayList<Chat>()
                 snapshot.documents.forEach {
                     println(it.data)
-                    val chat=Chat(it.getString("content")!!,firebaseAuth.currentUser?.photoUrl.toString(),
+                    val chat=Chat(it.getString("content")!!,it.getString("icon"),
                         it.getString("name")!!,it.getString("uri"))
                     chatList.add(chat)
                 }
@@ -177,7 +168,9 @@ class ChatActivity : AppCompatActivity() {
             "name" to userName,
             "content" to messageText,
             "uri" to uri.toString(),
-            "timestamp" to Timestamp.now())
+            "timestamp" to Timestamp.now(),
+            "icon" to firebaseAuth.currentUser?.photoUrl.toString()
+        )
 
         firestore.collection(courseId.toString())
             .add(messageData)
