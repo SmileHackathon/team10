@@ -1,20 +1,29 @@
 package com.example.smiline.ui.home
 
+import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
+import android.widget.ListView
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.room.Room
 import com.example.smiline.R
 import com.example.smiline.databinding.FragmentHomeBinding
+import com.example.smiline.model.db.AppDatabase
+import com.example.smiline.model.db.Course
+import com.example.smiline.ui.chat.ChatActivity
+import com.example.smiline.util.ui.listAdapter.ListAdapter
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
 
 class HomeFragment : Fragment() {
 
     private lateinit var homeViewModel: HomeViewModel
     private var _binding: FragmentHomeBinding? = null
+    private var courses : List<Course>? = null
 
     // This property is only valid between onCreateView and
     // onDestroyView.
@@ -30,12 +39,39 @@ class HomeFragment : Fragment() {
 
         _binding = FragmentHomeBinding.inflate(inflater, container, false)
         val root: View = binding.root
+        GlobalScope.launch {
+            val db: AppDatabase = Room
+                .databaseBuilder(
+                    requireContext().applicationContext,
+                    AppDatabase::class.java, "database-name"
+                ).fallbackToDestructiveMigration()
+                .build()
+            courses = db.userDao().getAll()
+            courses.let {
+                val list_view = root.findViewById<ListView>(R.id.list_view)
+                if(courses != null) {
+                    val adapter = ListAdapter(requireContext(), courses!!)
+                    println("adapter"+adapter.toString())
+                    activity?.runOnUiThread {
+                        list_view.adapter = adapter
+                    }
+                }
+                list_view.setOnItemClickListener { _, _, position, _ ->
+                    val intent = Intent(requireContext(), ChatActivity::class.java)
+                    intent.putExtra("id",courses?.get(position)?.course_id)
+                    intent.putExtra("name",courses?.get(position)?.course_name)
+                    startActivity(intent)
+                }
+            }
 
-        val textView: TextView = binding.textHome
-        homeViewModel.text.observe(viewLifecycleOwner, Observer {
-            textView.text = it
-        })
+        }
+
         return root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+
+
     }
 
     override fun onDestroyView() {
