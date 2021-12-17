@@ -14,14 +14,14 @@
 　同じ講義を受講している人同士が同じ部屋で会話ができる
 
 ## 開発技術
-- kotlin,Python
+- kotlin
 - 利用したフレームワーク・ライブラリ  
-  Flask,Room,Piccaso
+  Room,Piccaso
 - その他開発に使用したツール
-  Git,Git flow,Git hub,Android Studio,Firebase,Azure
+  Git,Git flow,Git hub,Android Studio,Firebase
 
 ## 役割分担
-- 山内大翔：Android,Python,Firebase
+- 山内大翔：Android,Firebase
 - 中村允洸：Android
 - 舘山龍之介：Android
 - 根本太貴：Android
