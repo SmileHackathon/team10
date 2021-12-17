@@ -36,7 +36,7 @@ class ChatActivity : AppCompatActivity() {
                 var chatList=ArrayList<Chat>()
                 snapshot.documents.forEach {
                     println(it.data)
-                    val chat=Chat(it.getString("content")!!,firebaseAuth.currentUser?.photoUrl.toString(),
+                    val chat=Chat(it.getString("content")!!,it.getString("icon"),
                         it.getString("name")!!,it.getString("uri"))
                     chatList.add(chat)
                 }
@@ -168,7 +168,9 @@ class ChatActivity : AppCompatActivity() {
             "name" to userName,
             "content" to messageText,
             "uri" to uri.toString(),
-            "timestamp" to Timestamp.now())
+            "timestamp" to Timestamp.now(),
+            "icon" to firebaseAuth.currentUser?.photoUrl.toString()
+        )
 
         firestore.collection(courseId.toString())
             .add(messageData)
