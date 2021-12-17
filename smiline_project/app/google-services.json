@@ -1,33 +1,33 @@
 {
   "project_info": {
-    "project_number": "854929530402",
-    "project_id": "smiline-8c235",
-    "storage_bucket": "smiline-8c235.appspot.com"
+    "project_number": "888064943728",
+    "project_id": "smiline-japan",
+    "storage_bucket": "smiline-japan.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:854929530402:android:4dd3b7b67433aaeb94747b",
+        "mobilesdk_app_id": "1:888064943728:android:370d96e174e80e5c70f6b5",
         "android_client_info": {
           "package_name": "com.example.smiline"
         }
       },
       "oauth_client": [
         {
-          "client_id": "854929530402-r2se2d8gqlgv31puek0ndkg2te8he4ju.apps.googleusercontent.com",
+          "client_id": "888064943728-4fscotht812h6qs9hef096k0evruv3jv.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyAi6TJnkLPKoiHaLps2Ht2pEkbB_deDhlM"
+          "current_key": "AIzaSyBqdvbZZcue6iAlx4jXCg8JrteKdbqgr8Y"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "854929530402-r2se2d8gqlgv31puek0ndkg2te8he4ju.apps.googleusercontent.com",
+              "client_id": "888064943728-4fscotht812h6qs9hef096k0evruv3jv.apps.googleusercontent.com",
               "client_type": 3
             }
           ]
