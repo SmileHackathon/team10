@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.example.smiline.R
+import com.google.firebase.ktx.Firebase
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -27,6 +28,22 @@ class SettingFragment : Fragment() {
         arguments?.let {
             param1 = it.getString(ARG_PARAM1)
             param2 = it.getString(ARG_PARAM2)
+
+            /*val storage = Firebase.storage
+
+            // [START upload_create_reference]
+            // Create a storage reference from our app
+            val storageRef = storage.reference
+
+            // Create a reference to "mountains.jpg"
+            val mountainsRef = storageRef.child("mountains.jpg")
+
+            // Create a reference to 'images/mountains.jpg'
+            val mountainImagesRef = storageRef.child("images/mountains.jpg")
+
+            // While the file names are the same, the references point to different files
+            mountainsRef.name == mountainImagesRef.name // true
+            mountainsRef.path == mountainImagesRef.path // false*/
         }
     }
 
@@ -37,6 +54,9 @@ class SettingFragment : Fragment() {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_setting, container, false)
     }
+
+
+
 
     companion object {
         /**
